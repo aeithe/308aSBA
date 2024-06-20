@@ -1,4 +1,5 @@
 export default function digimonCardFactory(digimon){
+    console.log(digimon)
     let card = document.createElement("div");
     let img = document.createElement("img");
     let cardBody = document.createElement("div");

@@ -1,10 +1,14 @@
-import digimonCardFactory from "./digimoncardfactory";
+import digimonCardFactory from "./digimoncardfactory.js";
+import deleteCards from "./deletecards.js";
+import apiURL from "./apiURL.js";
+
 let buttn = document.getElementById("button");
 let allDigimon;
+let container = document.getElementById("container");
 
 async function fetchData(){
      try {
-        const response = await fetch(`https://digimon-api.vercel.app/api/digimon`,{
+        const response = await fetch(apiURL,{
             method: "GET",
             mode: "cors",
             cache: "no-cache",
@@ -44,10 +48,28 @@ function findDigimon(digimon){
     } return false
 }
 
+let digi = document.getElementById("digimonName")
+
 buttn.addEventListener("click", ()=>{
-    let digi = document.getElementById("digimonName").value
-    let usersDigimon = findDigimon(digi)
-    console.log(usersDigimon)
+    deleteCards(container);
+    let usersDigimon = findDigimon(digi.value)
+    if (usersDigimon != false){
+        let digimonCard = digimonCardFactory(usersDigimon)
+        container.appendChild(digimonCard);
+    }else{
+        alert("Digimon does not exist");
+    }
 })
 
+digi.addEventListener("keypress", (event)=>{
+    deleteCards(container);
+    let usersDigimon = findDigimon(digi.value)
+    if(event.key === "Enter"){
+    if (usersDigimon != false){
+        let digimonCard = digimonCardFactory(usersDigimon)
+        container.appendChild(digimonCard);
+    }else{
+        alert("Digimon does not exist");
+    }
+}})
 
