@@ -48,7 +48,7 @@ function findDigimon(digimon){
     } return false
 }
 
-let digi = document.getElementById("digimonName")
+let digi = document.getElementById("digimonName").charAt(0).toUpperCase()
 
 buttn.addEventListener("click", ()=>{
     deleteCards(container);
@@ -57,7 +57,7 @@ buttn.addEventListener("click", ()=>{
         let digimonCard = digimonCardFactory(usersDigimon)
         container.appendChild(digimonCard);
     }else{
-        alert("Digimon does not exist");
+        alert("Digimon does not exist/Must type first letter in capital case");
     }
 })
 
@@ -69,7 +69,7 @@ digi.addEventListener("keypress", (event)=>{
         let digimonCard = digimonCardFactory(usersDigimon)
         container.appendChild(digimonCard);
     }else{
-        alert("Digimon does not exist");
+        alert("Digimon does not exist/Must type first letter in capital case");
     }
 }})
 
