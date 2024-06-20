@@ -1,6 +1,4 @@
-// fetch("https://digi-api.com/api/v1/digimon")
-// .then(response => console.log(response))
-// .catch(error => console.log(error));
+import digimonCardFactory from "./digimoncardfactory";
 let buttn = document.getElementById("button");
 let allDigimon;
 
@@ -26,25 +24,30 @@ async function fetchData(){
 }
 
 fetchData().then((digimon) => {
-    //console.log(digimon)
     allDigimon = digimon
 })
 
-// console.log(allDigimon[0]);
+function findDigimon(digimon){
+    for(const [key, value] of Object.entries(allDigimon)){
+        
+        if(digimon == value.name){
+            let foundDigimon =
+             {
+                name: value.name,
+                img: value.img,
+                level: value.level
+            }
+            return foundDigimon
+        } 
+       
+
+    } return false
+}
+
 buttn.addEventListener("click", ()=>{
     let digi = document.getElementById("digimonName").value
-    // console.log(allDigimon);
-        for(const [key, value] of Object.entries(allDigimon)){
-            console.log(value.name)
-            console.log(digi)
-            if(digi == value.name){
-                console.log(value.img)
-            } else{
-                console.log("This Digimon was not found")
-            }
-
-        }
-    
-    
+    let usersDigimon = findDigimon(digi)
+    console.log(usersDigimon)
 })
+
 
