@@ -48,7 +48,7 @@ function findDigimon(digimon){
     } return false
 }
 
-let digi = document.getElementById("digimonName").charAt(0).toUpperCase()
+let digi = document.getElementById("digimonName")
 
 buttn.addEventListener("click", ()=>{
     deleteCards(container);
